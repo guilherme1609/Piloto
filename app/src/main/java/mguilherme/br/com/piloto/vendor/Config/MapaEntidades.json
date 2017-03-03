@@ -1,0 +1,130 @@
+{
+  "entidades": [
+    {
+      "nome": "pessoa",
+      "tabela": "pessoa",
+      "namespace":"\\Gerenciador\\Dominio",
+      "propriedades": [
+        {
+          "coluna": "id",
+          "atributo": "id",
+          "chavePrimaria": true,
+          "chaveEstrangeira": false,
+          "tipo": "int"
+        },
+        {
+          "coluna": "email",
+          "atributo": "email",
+          "chavePrimaria": false,
+          "chaveEstrangeira": false,
+          "tipo": "varchar(75)"
+        },
+        {
+          "coluna": "nome",
+          "atributo": "nome",
+          "chavePrimaria": false,
+          "chaveEstrangeira": false,
+          "tipo": "varchar(75)"
+        },
+        {
+          "coluna": "telefone",
+          "atributo": "telefone",
+          "chavePrimaria": false,
+          "chaveEstrangeira": false,
+          "tipo": "varchar(15)"
+        },
+        {
+          "coluna": "cidade",
+          "atributo": "\\Gerenciador\\Dominio\\Cidade",
+          "chavePrimaria": false,
+          "chaveEstrangeira": true,
+          "tipo": "int"
+        }
+      ]
+    },
+    {
+      "nome": "usuario",
+      "tabela": "usuario",
+      "namespace":"\\Gerenciador\\Dominio",
+      "propriedades": [
+        {
+          "coluna": "id",
+          "atributo": "id",
+          "chavePrimaria": true,
+          "chaveEstrangeira": false,
+          "tipo": "int"
+        },
+        {
+          "coluna": "login",
+          "atributo": "login",
+          "chavePrimaria": false,
+          "chaveEstrangeira": false,
+          "tipo": "varchar(45)"
+        },
+        {
+          "coluna": "senha",
+          "atributo": "senha",
+          "chavePrimaria": false,
+          "chaveEstrangeira": false,
+          "tipo": "varchar(255)"
+        },
+        {
+          "coluna": "pessoa",
+          "atributo": "\\Gerenciador\\Dominio\\Pessoa",
+          "chavePrimaria": false,
+          "chaveEstrangeira": true,
+          "tipo": "int"
+        },
+        {
+          "coluna": "perfil",
+          "atributo": "\\AreaAdministrativa\\Dominio\\Perfil",
+          "chavePrimaria": false,
+          "chaveEstrangeira": true,
+          "tipo": "int"
+        }
+      ]
+    },
+    {
+      "nome": "perfil",
+      "tabela": "perfil",
+      "namespace":"\\AreaAdministrativa\\Dominio",
+      "propriedades": [
+        {
+          "coluna": "id",
+          "atributo": "id",
+          "chavePrimaria": true,
+          "chaveEstrangeira": false,
+          "tipo": "int"
+        },
+        {
+          "coluna": "titulo",
+          "atributo": "titulo",
+          "chavePrimaria": false,
+          "chaveEstrangeira": false,
+          "tipo": "varchar(45)"
+        }
+      ]
+    },
+    {
+      "nome": "cidade",
+      "tabela": "cidade",
+      "namespace":"\\Gerenciador\\Dominio",
+      "propriedades": [
+        {
+          "coluna": "id",
+          "atributo": "id",
+          "chavePrimaria": true,
+          "chaveEstrangeira": false,
+          "tipo": "int"
+        },
+        {
+          "coluna": "titulo",
+          "atributo": "titulo",
+          "chavePrimaria": false,
+          "chaveEstrangeira": false,
+          "tipo": "varchar(45)"
+        }
+      ]
+    }
+  ]
+}
