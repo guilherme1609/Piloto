@@ -14,6 +14,7 @@ import mguilherme.br.com.piloto.vendor.Config.Conf;
 public class GerarBase {
 
     public static void main(String[] args) throws JSONException {
+
         try {
             JSONParser parser = new JSONParser();
 

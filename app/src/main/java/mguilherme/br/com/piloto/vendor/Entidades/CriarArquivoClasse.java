@@ -17,13 +17,17 @@ import mguilherme.br.com.piloto.vendor.Utilitarios.Util;
 
 public class CriarArquivoClasse {
 
-    public void criarArquivoJava(String classe,String entidade,String namespace){
+    public void criarArquivoJava(String classe,String entidade,String namespace) {
 
-        File diretorio = new File(Conf.getConfig().LOCAL_PROJECT,namespace);
-
-        if(!diretorio.exists()) {
-            diretorio.mkdirs();
-            System.out.println("Diretorios criados!");
+        File diretorio = new File(Conf.getConfig().LOCAL_PROJECT, namespace);
+        try{
+            if (!diretorio.exists()) {
+                diretorio.mkdirs();
+                System.out.println("Diretorios criados!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Ocorreu um erro verifique se o caminho do diretorio especificado está correto!");
         }
 
         File f = new File(diretorio, Util.capitalizar(entidade)+".java");
@@ -33,6 +37,7 @@ public class CriarArquivoClasse {
             System.out.println("Arquivo "+Util.capitalizar(entidade)+".java criado!");
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Ocorreu um erro verifique se o caminho do diretorio especificado está correto!");
         }
         PrintWriter pw = null;
         try {

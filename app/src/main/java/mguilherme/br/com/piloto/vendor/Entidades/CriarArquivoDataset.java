@@ -19,10 +19,14 @@ public class CriarArquivoDataset {
     public void criarArquivoDatasetJava(String estrutura){
 
         File diretorio = new File(Conf.getConfig().LOCAL_PROJECT,"\\Database\\");
-
-        if(!diretorio.exists()) {
-            diretorio.mkdirs();
-            System.out.println("Diretorio do banco criado!");
+        try {
+            if (!diretorio.exists()) {
+                diretorio.mkdirs();
+                System.out.println("Diretorio do banco criado!");
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Ocorreu um erro verifique se o caminho do diretorio especificado está correto!");
         }
 
         File f = new File(diretorio, "DatasetHelper.java");
@@ -32,6 +36,7 @@ public class CriarArquivoDataset {
             System.out.println("Arquivo DatasetHelper.java criado!");
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Ocorreu um erro verifique se o caminho do diretorio especificado está correto!");
         }
         PrintWriter pw = null;
         try {
