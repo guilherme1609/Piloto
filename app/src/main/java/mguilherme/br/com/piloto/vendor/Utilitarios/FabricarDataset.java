@@ -31,13 +31,13 @@ public class FabricarDataset {
 
         strBuilder.append("public class DatasetHelper {\n\n");
         strBuilder.append("private int contador;\n")
-                  .append("private SQLiteDatabase database;\n")
-                  .append("private DatabaseHelper dbHelper;\n")
-                  .append("private String entidade;\n\n");
+                .append("private SQLiteDatabase database;\n")
+                .append("private DatabaseHelper dbHelper;\n")
+                .append("private String entidade;\n\n");
 
         strBuilder.append("public DatasetHelper(String entidade,Context contexto){\n\n")
-                  .append("this.entidade = entidade;\n")
-                  .append("dbHelper = new DatabaseHelper(contexto);\n").append("}\n\n");
+                .append("this.entidade = entidade;\n")
+                .append("dbHelper = new DatabaseHelper(contexto);\n").append("}\n\n");
 
         strBuilder.append("public DatasetHelper(Context contexto){dbHelper = new DatabaseHelper(contexto);}\n\n");
         strBuilder.append("public int getContador() {return contador;}\n\n");
@@ -50,29 +50,29 @@ public class FabricarDataset {
         return strBuilder.toString();
     }
 
-    public String fabIfParametro(int contator,boolean hasNext, String nomeCapitalizado){
+    public String fabIfParametro(int contator,boolean hasNext, String entidade){
         StringBuilder strIfParametro = new StringBuilder();
 
         if(contator==1) {
             if(hasNext) {
-                strIfParametro.append("if(objeto instanceof " + nomeCapitalizado + "){\n")
-                        .append("     parametro = ((" + nomeCapitalizado + ") objeto).getId();")
+                strIfParametro.append("if(objeto instanceof " + entidade + "){\n")
+                        .append("     parametro = ((" + entidade + ") objeto).getId();")
                         .append("}\n");
             }else{
-                strIfParametro.append("if(objeto instanceof " + nomeCapitalizado + "){\n")
-                        .append("     parametro = ((" + nomeCapitalizado + ") objeto).getId();")
+                strIfParametro.append("if(objeto instanceof " + entidade + "){\n")
+                        .append("     parametro = ((" + entidade + ") objeto).getId();")
                         .append("}\n\n");
                 strIfParametro.append(" return parametro;\n");
                 strIfParametro.append("}\n\n");
             }
         }else{
             if(hasNext) {
-                strIfParametro.append("else if(objeto instanceof " + nomeCapitalizado + "){\n")
-                        .append("parametro = ((" + nomeCapitalizado + ") objeto).getId();")
+                strIfParametro.append("else if(objeto instanceof " + entidade + "){\n")
+                        .append("parametro = ((" + entidade + ") objeto).getId();")
                         .append("}\n");
             }else{
-                strIfParametro.append("else if(objeto instanceof " + nomeCapitalizado + "){\n")
-                        .append("parametro = ((" + nomeCapitalizado + ") objeto).getId();")
+                strIfParametro.append("else if(objeto instanceof " + entidade + "){\n")
+                        .append("parametro = ((" + entidade + ") objeto).getId();")
                         .append("}\n\n");
                 strIfParametro.append(" return parametro;\n");
                 strIfParametro.append("}\n\n");
@@ -92,15 +92,15 @@ public class FabricarDataset {
         strBuilder.append("     if(parametroAlteracao!=0){\n");
         strBuilder.append("         if (database.update(entidade, values, \"id=?\", new String[]{String.valueOf(parametroAlteracao)}) == -1) {\n");
         strBuilder.append("             return false;\n")
-                  .append("         }else{\n");
+                .append("         }else{\n");
         strBuilder.append("             return true;\n")
-                  .append("         }\n");
+                .append("         }\n");
         strBuilder.append("     }else {\n");
         strBuilder.append("         if (database.insert(entidade, null, values) == -1) {\n");
         strBuilder.append("             return false;\n");
         strBuilder.append("         }else{\n");
         strBuilder.append("             return true;\n")
-                  .append("         }\n");
+                .append("         }\n");
         strBuilder.append("     }\n");
         strBuilder.append("}\n\n");
 
@@ -135,10 +135,10 @@ public class FabricarDataset {
         strMetodoIdCadastro.append("    while (!cursor.isAfterLast()) {\n");
         strMetodoIdCadastro.append("        idRetorno = cursor.getInt(0);\n");
         strMetodoIdCadastro.append("        cursor.moveToNext();\n")
-                           .append("    }\n\n");
+                .append("    }\n\n");
         strMetodoIdCadastro.append("    cursor.close();\n")
-                           .append("    return idRetorno;")
-                           .append("}\n\n");
+                .append("    return idRetorno;")
+                .append("}\n\n");
 
         return strMetodoIdCadastro.toString();
     }
@@ -150,7 +150,7 @@ public class FabricarDataset {
         strBuilder.append("     List<Object> lsObjects = new ArrayList<Object>();\n\n");
         strBuilder.append("     if(parametros==null){\n");
         strBuilder.append("         parametros = new String[]{};\n")
-                  .append("     }\n\n");
+                .append("     }\n\n");
         strBuilder.append("     Cursor cursor = database.rawQuery(sentenca, parametros);\n");
         strBuilder.append("     setContador(cursor.getCount());\n");
         strBuilder.append("     cursor.moveToFirst();\n");
@@ -158,7 +158,7 @@ public class FabricarDataset {
         strBuilder.append("         Object objeto = cursorToObject(cursor,entidade);\n");
         strBuilder.append("         lsObjects.add(objeto);\n");
         strBuilder.append("         cursor.moveToNext();\n")
-                  .append("     }\n\n");
+                .append("     }\n\n");
         strBuilder.append(" cursor.close();\n");
         strBuilder.append(" return lsObjects;\n");
         strBuilder.append("}\n\n");
@@ -214,22 +214,22 @@ public class FabricarDataset {
         return strBuilder.toString();
     }
 
-    public String fabVariaveisContentValue(String entidade,String coluna,String tipo,boolean chaveEstrangeira){
+    public String fabVariaveisContentValue(String entidade,String coluna,String atributo,String tipo,boolean chaveEstrangeira){
 
         StringBuilder strBuilder = new StringBuilder();
 
         if(chaveEstrangeira){
-            strBuilder.append("     if(" + entidade + ".get" + Util.capitalizar(coluna) + "()!=null){\n");
-            strBuilder.append("         values.put(\"" + coluna + "\", ((" + Util.capitalizar(entidade) + ") objeto).get" + Util.capitalizar(coluna) + "().getId());\n");
+            strBuilder.append("     if(" + entidade + ".get" + Util.pegarEntidade(atributo) + "()!=null){\n");
+            strBuilder.append("         values.put(\"" + coluna + "\", ((" + Util.capitalizar(entidade) + ") objeto).get" + Util.pegarEntidade(atributo) + "().getId());\n");
             strBuilder.append("     }\n");
         }else {
             if (tipo.startsWith("varchar")) {
-                strBuilder.append("     if(!TextUtils.isEmpty(" + entidade + ".get" + Util.capitalizar(coluna) + "())){\n");
-                strBuilder.append("         values.put(\"" + coluna + "\", ((" + Util.capitalizar(entidade) + ") objeto).get" + Util.capitalizar(coluna) + "());\n");
+                strBuilder.append("     if(!TextUtils.isEmpty(" + entidade + ".get" + Util.capitalizar(atributo) + "())){\n");
+                strBuilder.append("         values.put(\"" + coluna + "\", ((" + Util.capitalizar(entidade) + ") objeto).get" + Util.capitalizar(atributo) + "());\n");
                 strBuilder.append("     }\n");
             } else{
-                strBuilder.append("     if(" + entidade + ".get" + Util.capitalizar(coluna) + "()>0){\n");
-                strBuilder.append("         values.put(\"" + coluna + "\", ((" + Util.capitalizar(entidade) + ") objeto).get" + Util.capitalizar(coluna) + "());\n");
+                strBuilder.append("     if(" + entidade + ".get" + Util.capitalizar(atributo) + "()>0){\n");
+                strBuilder.append("         values.put(\"" + coluna + "\", ((" + Util.capitalizar(entidade) + ") objeto).get" + Util.capitalizar(atributo) + "());\n");
                 strBuilder.append("     }\n");
             }
         }
@@ -267,17 +267,17 @@ public class FabricarDataset {
         return strBuilder.toString();
     }
 
-    public String fabCarregarVariaveisNoObjeto(String entidade,String coluna,String tipo,int posicao,boolean chaveEstrangeira){
+    public String fabCarregarVariaveisNoObjeto(String entidade,String atributo,String tipo,int posicao,boolean chaveEstrangeira){
 
         StringBuilder strBuilder = new StringBuilder();
 
         if(chaveEstrangeira){
-            strBuilder.append("     " + entidade + ".get" + Util.capitalizar(coluna) + "().setId" + "(cursor.getInt" + "(" + posicao + "));\n");
+            strBuilder.append("     " + entidade + ".get" + Util.pegarEntidade(atributo) + "().setId" + "(cursor.getInt" + "(" + posicao + "));\n");
         }else {
             if (tipo.startsWith("varchar")) {
-                strBuilder.append("     " + entidade + ".set" + Util.capitalizar(coluna) + "(cursor.getString" + "(" + posicao + "));\n");
+                strBuilder.append("     " + entidade + ".set" + Util.capitalizar(atributo) + "(cursor.getString" + "(" + posicao + "));\n");
             }else{
-                strBuilder.append("     " + entidade + ".set" + Util.capitalizar(coluna) + "(cursor.get" + Util.capitalizar(tipo) + "(" + posicao + "));\n");
+                strBuilder.append("     " + entidade + ".set" + Util.capitalizar(atributo) + "(cursor.get" + Util.capitalizar(tipo) + "(" + posicao + "));\n");
             }
         }
         return strBuilder.toString();

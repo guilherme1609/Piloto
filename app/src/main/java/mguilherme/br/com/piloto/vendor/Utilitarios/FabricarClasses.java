@@ -28,35 +28,35 @@ public class FabricarClasses {
         return strBuilder.toString();
     }
 
-    public String fabGetSet(String coluna,String tipo,boolean chaveEstrangeira){
+    public String fabGetSet(String atributo,String tipo,boolean chaveEstrangeira){
         StringBuilder stringBuilder = new StringBuilder();
         if(chaveEstrangeira){
-            stringBuilder.append("public "+Util.capitalizar(coluna)+" get"+Util.capitalizar(coluna)+"(){ return "+coluna+"; }\n");
-            stringBuilder.append("public void set"+Util.capitalizar(coluna)+"("+Util.capitalizar(coluna)+" "+coluna+") { this."+coluna+" = "+coluna+";}\n");
+            stringBuilder.append("public "+Util.pegarEntidade(atributo)+" get"+Util.pegarEntidade(atributo)+"(){ return "+Util.descapitalizar(Util.pegarEntidade(atributo))+"; }\n");
+            stringBuilder.append("public void set"+Util.pegarEntidade(atributo)+"("+Util.pegarEntidade(atributo)+" "+Util.descapitalizar(Util.pegarEntidade(atributo))+") { this."+Util.descapitalizar(Util.pegarEntidade(atributo))+" = "+Util.descapitalizar(Util.pegarEntidade(atributo))+";}\n");
         }else{
             if(tipo.startsWith("varchar")){
-                stringBuilder.append("public String get"+Util.capitalizar(coluna)+"(){ return "+coluna+"; }\n");
-                stringBuilder.append("public void set"+Util.capitalizar(coluna)+"(String "+coluna+") { this."+coluna+" = "+coluna+";}\n");
+                stringBuilder.append("public String get"+Util.capitalizar(atributo)+"(){ return "+atributo+"; }\n");
+                stringBuilder.append("public void set"+Util.capitalizar(atributo)+"(String "+atributo+") { this."+atributo+" = "+atributo+";}\n");
             }else{
-                stringBuilder.append("public "+tipo+" get"+Util.capitalizar(coluna)+"(){ return "+coluna+"; }\n");
-                stringBuilder.append("public void set"+Util.capitalizar(coluna)+"("+tipo+" "+coluna+") { this."+coluna+" = "+coluna+";}\n");
+                stringBuilder.append("public "+tipo+" get"+Util.capitalizar(atributo)+"(){ return "+atributo+"; }\n");
+                stringBuilder.append("public void set"+Util.capitalizar(atributo)+"("+tipo+" "+atributo+") { this."+atributo+" = "+atributo+";}\n");
             }
 
         }
         return stringBuilder.toString();
     }
 
-    public String fabVariaveisClasse(boolean chaveEstrangeira,String coluna,String tipo){
+    public String fabVariaveisClasse(boolean chaveEstrangeira,String atributo,String tipo){
 
         StringBuilder strVariaveis = new StringBuilder();
 
         if(chaveEstrangeira){
-            strVariaveis.append("private " + Util.capitalizar(coluna) + " " + coluna + ";\n");
+            strVariaveis.append("private " + Util.pegarEntidade(atributo) + " " + Util.descapitalizar(Util.pegarEntidade(atributo)) + ";\n");
         }else {
             if(tipo.startsWith("varchar")){
-                strVariaveis.append("private String " + coluna + ";\n");
+                strVariaveis.append("private String " + atributo + ";\n");
             }else {
-                strVariaveis.append("private " + tipo + " " + coluna + ";\n");
+                strVariaveis.append("private " + tipo + " " + atributo + ";\n");
             }
         }
 
