@@ -65,7 +65,7 @@ public class GerarClasses {
             Iterator p = arrayPropriedades.iterator();
 
             //Montanto string do dataset
-            strImportsDataset.append("import "+Conf.getConfig().PACKAGE+Util.normalizarNamespace(namespace)+"."+nomeCapitalizado+";\n");
+            strImportsDataset.append("import "+ Conf.getConfig().PACKAGE+Util.normalizarNamespace(namespace)+"."+nomeCapitalizado+";\n");
 
             strMetodoGetParametro.append(fabDataset.fabIfParametro(contator,i.hasNext(),nomeCapitalizado));
 
@@ -83,14 +83,14 @@ public class GerarClasses {
                     strImportEntidade.append(fabClasse.fabImportEntidadeEstrangeira(atributo));
                 }
                 //Montar variaveis de classe
-                strVariaveis.append(fabClasse.fabVariaveisClasse(chaveEstrangeira,coluna,tipo));
+                strVariaveis.append(fabClasse.fabVariaveisClasse(chaveEstrangeira,atributo,tipo));
                 //Montar propriedades da tabela
                 strPropriedades.append(fabBanco.fabPropriedadesTabela(chavePrimaria,coluna,p.hasNext(),tipo));
-                strGetSet.append(fabClasse.fabGetSet(coluna,tipo,chaveEstrangeira));
+                strGetSet.append(fabClasse.fabGetSet(atributo,tipo,chaveEstrangeira));
                 //Montar variaveis dataset content value
-                strFabVariaveisContentValue.append(fabDataset.fabVariaveisContentValue(nome,coluna,tipo,chaveEstrangeira));
+                strFabVariaveisContentValue.append(fabDataset.fabVariaveisContentValue(nome,coluna,atributo,tipo,chaveEstrangeira));
                 //Montar variaveis do objeto no dataset
-                strFabCarregarVariaveisNoObjeto.append(fabDataset.fabCarregarVariaveisNoObjeto(nome,coluna,tipo,posicao,chaveEstrangeira));
+                strFabCarregarVariaveisNoObjeto.append(fabDataset.fabCarregarVariaveisNoObjeto(nome,atributo,tipo,posicao,chaveEstrangeira));
 
                 posicao++;
             }

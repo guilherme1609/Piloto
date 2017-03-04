@@ -14,9 +14,22 @@ public class Util {
         return palavra;
     }
 
+    public static String descapitalizar(String palavra){
+        palavra = palavra.substring(0,1).toLowerCase().concat(palavra.substring(1));
+        return palavra;
+    }
+
     public static String normalizarNamespace(String namespace){
         namespace = namespace.replace("\\",".");
         return namespace;
+    }
+
+    public static String pegarEntidade(String entidade){
+
+        String strEntidade = entidade;
+        int posIni = strEntidade.lastIndexOf("\\");
+
+        return strEntidade.substring(posIni).replace("\\","");
     }
 
 }
