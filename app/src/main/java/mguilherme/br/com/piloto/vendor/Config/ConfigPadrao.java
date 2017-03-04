@@ -28,6 +28,6 @@ public class ConfigPadrao {
      * deve ser especificado o caminho completo onde o arquivo foi salvo
      * o arquivo pode ser salvo no local de sua escolha dentro do projeto
      */
-    public final String LOCAL_MAPA_ENTIDADES = "C:\\Users\\guilh\\AndroidStudioProjects\\Piloto\\app\\src\\main\\java\\mguilherme\\br\\com\\piloto\\vendor\\Config\\MapaEntidades.json";
+    public final String LOCAL_MAPA_ENTIDADES = LOCAL_PROJECT+"\\vendor\\Config\\MapaEntidades.json";
 
 }
