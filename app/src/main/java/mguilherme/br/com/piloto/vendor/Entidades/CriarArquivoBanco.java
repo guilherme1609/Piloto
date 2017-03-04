@@ -19,11 +19,15 @@ public class CriarArquivoBanco {
 
         File diretorio = new File(Conf.getConfig().LOCAL_PROJECT,"\\Database\\");
 
-        if(!diretorio.exists()) {
-            diretorio.mkdirs();
-            System.out.println("Diretorio do banco criado!");
+        try {
+            if (!diretorio.exists()) {
+                diretorio.mkdirs();
+                System.out.println("Diretorio do banco criado!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Ocorreu um erro verifique se o caminho do diretorio especificado está correto!");
         }
-
         File f = new File(diretorio, "DatabaseHelper.java");
 
         try {
@@ -31,6 +35,7 @@ public class CriarArquivoBanco {
             System.out.println("Arquivo DatabaseHelper.java criado!");
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Ocorreu um erro verifique se o caminho do diretorio especificado está correto!");
         }
         PrintWriter pw = null;
         try {

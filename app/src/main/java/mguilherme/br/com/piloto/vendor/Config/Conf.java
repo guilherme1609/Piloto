@@ -4,6 +4,6 @@ package mguilherme.br.com.piloto.vendor.Config;
    caso tenha mais de um
 */
 public class Conf {
-    public static final ConfigGuilherme config = new ConfigGuilherme();
-    public static final ConfigGuilherme getConfig(){return config;}
+    public static final ConfigPadrao config = new ConfigPadrao();
+    public static final ConfigPadrao getConfig(){return config;}
 }
